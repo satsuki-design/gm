@@ -12,15 +12,8 @@ function openMenu() {
     headerNav.classList.add('active');
     overlay.classList.add('active');
     body.style.overflow = 'hidden';
+    hamburger.classList.add('active');
     hamburger.setAttribute('aria-expanded', 'true');
-    
-    // メニューテキストが正しく表示されるようにする
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.style.whiteSpace = 'nowrap';
-        link.style.overflow = 'visible';
-        link.style.textOverflow = 'clip';
-    });
 }
 
 // メニューを閉じる関数
@@ -29,6 +22,7 @@ function closeMenu() {
     headerNav.classList.remove('active');
     overlay.classList.remove('active');
     body.style.overflow = '';
+    hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
 }
 
@@ -58,21 +52,18 @@ if (overlay) {
 }
 
 // メニュー内のリンクをクリックしたらメニューを閉じる
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-menu .nav-link');
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        // 現在のページへのリンクの場合はデフォルトの動作を防ぐ
-        if (this.getAttribute('href') === window.location.pathname.split('/').pop()) {
-            e.preventDefault();
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            closeMenu();
         }
-        closeMenu();
     });
 });
 
 // ウィンドウリサイズ時の処理
 function handleResize() {
-    // ウィンドウ幅が1025px以上の場合はメニューを閉じる
-    if (window.innerWidth >= 1025) {
+    if (window.innerWidth > 768 && isMenuOpen) {
         closeMenu();
     }
 }
@@ -81,10 +72,10 @@ function handleResize() {
 let resizeTimer;
 window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleResize, 100);
+    resizeTimer = setTimeout(handleResize, 250);
 });
 
-// 初期化
+// ページ読み込み時に実行
 handleResize();
 
 // ナビゲーションリンクの処理（スムーススクロール）

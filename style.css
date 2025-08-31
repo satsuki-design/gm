@@ -7,57 +7,83 @@ header {
     z-index: 1000;
     width: 100%;
     box-sizing: border-box;
+    height: 70px; /* 固定のヘッダー高さ */
 }
 
 .top-bar {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
 }
 
+/* サイトタイトル */
+.top-bar h1 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 /* ===== PCナビゲーション ===== */
 .nav-pc {
     display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     align-items: center;
 }
 
 .nav-pc ul {
     display: flex;
-    list-style: none;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
-.nav-pc li {
-    margin: 0 0.8rem;
-}
-
-.nav-pc .nav-link {
+.nav-pc a {
     color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    padding: 0.5rem 0.8rem;
+    position: relative;
+    white-space: nowrap;
 }
 
-.nav-pc .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.nav-pc a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
 }
 
-/* ===== モバイルナビゲーション ===== */
+.nav-pc a:hover::after {
+    width: 100%;
+}
+
+/* ===== モバイルメニュー ===== */
 .hamburger {
     display: none;
     background: none;
     border: none;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
     cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
+    z-index: 1002;
+    position: relative;
 }
 
 .hamburger-line {
@@ -65,38 +91,21 @@ header {
     width: 24px;
     height: 2px;
     background-color: #ffffff;
-    margin: 5px 0;
+    margin: 5px auto;
     transition: all 0.3s ease;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
+    border-radius: 2px;
 }
 
 .header-nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 85%;
-    max-width: 350px;
-    height: 100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
     background-color: #0e7b78;
-    z-index: 1000;
-    transition: right 0.4s ease-in-out;
+    z-index: 1001;
+    transition: right 0.3s ease-in-out;
     padding: 80px 20px 40px;
     box-sizing: border-box;
     overflow-y: auto;
@@ -106,68 +115,69 @@ header {
     right: 0;
 }
 
-.close-btn {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
-.close-btn::before,
-.close-btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 24px;
-    height: 2px;
-    background-color: #ffffff;
-    transform-origin: center;
-}
-
-.close-btn::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.close-btn::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-}
-
 .nav-menu {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
+    gap: 1rem;
 }
 
 .nav-menu li {
     width: 100%;
-    text-align: center;
-    margin: 10px 0;
 }
 
 .nav-link {
-    color: #ffffff !important;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 500;
-    padding: 10px 15px;
+    padding: 0.8rem 1rem;
     display: block;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: left;
 }
 
 .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1003;
+}
+
+/* オーバーレイ */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
 }
 
 /* ===== レスポンシブデザイン ===== */
@@ -192,84 +202,132 @@ header {
 
     .hamburger {
         display: block;
-        position: fixed;
-        right: 15px;
-        top: 15px;
-        z-index: 1001;
     }
 
-    .header-nav {
-        padding: 70px 20px 30px;
-        width: 100%;
-        max-width: 300px;
-        right: -100%;
+    .top-bar {
+        padding: 0 1rem;
     }
 
-    .nav-menu {
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 0;
-        overflow-y: auto;
+    .top-bar h1 {
+        font-size: 1.3rem;
     }
 
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
+    .hamburger.active .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
     }
-
-    .nav-link {
-        font-size: 1.1rem;
-        padding: 12px 15px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+    
+    .hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0;
     }
-
-    .close-btn {
-        right: 15px;
-        top: 15px;
-    }
-
-    /* オーバーレイの調整 */
-    .overlay {
-        z-index: 999;
-    }
-
-    /* スクロールバーのスタイリング */
-    .header-nav::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .header-nav::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
-    }
-
-    .header-nav::-webkit-scrollbar-track {
-        background: transparent;
+    
+    .hamburger.active .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 }
 
-/* メインビジュアル */
-header {
+/* スマホ用の追加調整 */
+@media (max-width: 480px) {
+    .header-nav {
+        width: 85%;
+    }
+    
+    .top-bar h1 {
+        font-size: 1.1rem;
+    }
+}
+
+/* ===== メインビジュアル ===== */
+.main-visual {
     position: relative;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    height: 75vh;
+    max-height: 800px;
+    min-height: 400px;
     overflow: hidden;
-    background-color: #0e7b78; /* フッターと同じ色に統一 */
 }
 
-header img {
+.main-visual-image {
     width: 100%;
-    height: 75vh; /* 3. 画面の75%の高さに調整 */
-    max-height: 800px;
-    min-height: 400px; /* 最小高さを設定 */
+    height: 100%;
     object-fit: cover;
-    object-position: center;
     display: block;
+}
+
+.main-visual-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    padding: 0 20px;
+}
+
+.main-visual-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.main-visual-text {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 1024px) {
+    .main-visual {
+        height: 70vh;
+        min-height: 350px;
+    }
+    
+    .main-visual-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-visual {
+        height: 60vh;
+        min-height: 300px;
+    }
+    
+    .main-visual-title {
+        font-size: 1.8rem;
+    }
+    
+    .main-visual-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-visual {
+        height: 50vh;
+        min-height: 250px;
+    }
+    
+    .main-visual-title {
+        font-size: 1.5rem;
+    }
+    
+    .main-visual-text {
+        font-size: 1rem;
+    }
+}
+
+/* ヘッダー画像のスタイルを削除 */
+header img {
+    display: none;
 }
 
 /* ハンバーガーメニュー */
@@ -399,12 +457,13 @@ header img {
     font-weight: 500;
     padding: 10px 15px;
     display: block;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: left;
 }
 
 .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
 }
 
 /* レスポンシブ調整 */
