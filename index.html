@@ -10,12 +10,31 @@
     <header>
         <div class="top-bar">
             <h1>さつき Web Designer</h1>
+            
+            <!-- PC Navigation -->
+            <nav class="nav-pc">
+                <ul>
+                    <li><a href="index.html" class="nav-link">ホーム</a></li>
+                    <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>
+                    <li><a href="web.html" class="nav-link">Webデザイン実績</a></li>
+                    <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
+                    <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
             <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
+            
+            <!-- Mobile Menu Overlay -->
+            <div class="overlay"></div>
+            
+            <!-- Mobile Navigation -->
             <nav class="header-nav">
+                <button class="close-btn" aria-label="メニューを閉じる"></button>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">ホーム</a></li>
                     <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>

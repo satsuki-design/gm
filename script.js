@@ -1,5 +1,93 @@
-// ナビゲーションリンクの処理を修正
-// 外部ページへのリンクは通常通り動作させ、同一ページ内のアンカーリンクのみスムーススクロールを適用
+// メニュー状態の管理
+let isMenuOpen = false;
+const hamburger = document.querySelector('.hamburger');
+const closeBtn = document.querySelector('.close-btn');
+const overlay = document.querySelector('.overlay');
+const headerNav = document.querySelector('.header-nav');
+const body = document.body;
+
+// メニューを開く関数
+function openMenu() {
+    isMenuOpen = true;
+    headerNav.classList.add('active');
+    overlay.classList.add('active');
+    body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-expanded', 'true');
+    
+    // メニューテキストが正しく表示されるようにする
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.style.whiteSpace = 'nowrap';
+        link.style.overflow = 'visible';
+        link.style.textOverflow = 'clip';
+    });
+}
+
+// メニューを閉じる関数
+function closeMenu() {
+    isMenuOpen = false;
+    headerNav.classList.remove('active');
+    overlay.classList.remove('active');
+    body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
+}
+
+// メニューをトグルする関数
+function toggleMenu() {
+    if (isMenuOpen) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+// イベントリスナーを設定
+if (hamburger) {
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+}
+
+if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+}
+
+// メニュー内のリンクをクリックしたらメニューを閉じる
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        // 現在のページへのリンクの場合はデフォルトの動作を防ぐ
+        if (this.getAttribute('href') === window.location.pathname.split('/').pop()) {
+            e.preventDefault();
+        }
+        closeMenu();
+    });
+});
+
+// ウィンドウリサイズ時の処理
+function handleResize() {
+    // ウィンドウ幅が1025px以上の場合はメニューを閉じる
+    if (window.innerWidth >= 1025) {
+        closeMenu();
+    }
+}
+
+// リサイズイベントの設定（スロットリング付き）
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, 100);
+});
+
+// 初期化
+handleResize();
+
+// ナビゲーションリンクの処理（スムーススクロール）
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -56,101 +144,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // 各セクションを監視対象に追加
     sections.forEach(section => {
         observer.observe(section);
-    });
-});
-
-// ハンバーガーメニューの処理
-document.addEventListener('DOMContentLoaded', function() {
-    // 要素を取得
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.header-nav');
-    const body = document.body;
-    
-    // オーバーレイ要素を作成
-    const overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    document.body.appendChild(overlay);
-    
-    // メニューの状態を管理
-    let isMenuOpen = false;
-    
-    // メニューを開く関数
-    function openMenu() {
-        isMenuOpen = true;
-        hamburger.classList.add('active');
-        nav.classList.add('active');
-        overlay.classList.add('active');
-        body.style.overflow = 'hidden';
-        hamburger.setAttribute('aria-expanded', 'true');
-    }
-    
-    // メニューを閉じる関数
-    function closeMenu() {
-        isMenuOpen = false;
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        overlay.classList.remove('active');
-        body.style.overflow = '';
-        hamburger.setAttribute('aria-expanded', 'false');
-    }
-    
-    // メニューのトグル
-    function toggleMenu() {
-        if (isMenuOpen) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    }
-    
-    // ハンバーガーメニュークリック時の処理
-    hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        toggleMenu();
-    });
-    
-    // オーバーレイをクリックしたらメニューを閉じる
-    overlay.addEventListener('click', closeMenu);
-    
-    // メニュー内のリンクをクリックしたらメニューを閉じる
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // 現在のページへのリンクの場合はデフォルトの動作を防ぐ
-            if (this.getAttribute('href') === window.location.pathname.split('/').pop()) {
-                e.preventDefault();
-            }
-            closeMenu();
-        });
-    });
-    
-    // ウィンドウリサイズ時の処理
-    function handleResize() {
-        // タブレット/デスクトップサイズに戻ったらメニューを閉じる
-        if (window.innerWidth > 1024) {
-            closeMenu();
-        }
-    }
-    
-    // リサイズイベントの設定（スロットリング付き）
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(handleResize, 100);
-    });
-    
-    // メニュー外をクリックしたら閉じる
-    document.addEventListener('click', function(e) {
-        if (isMenuOpen && !nav.contains(e.target) && !hamburger.contains(e.target)) {
-            closeMenu();
-        }
-    });
-    
-    // ESCキーでメニューを閉じる
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isMenuOpen) {
-            closeMenu();
-        }
     });
 });

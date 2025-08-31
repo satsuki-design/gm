@@ -1,72 +1,63 @@
-/* 文字コードの宣言 */
-@charset "UTF-8";
-
-/* ===== ベースカラー設定 ===== */
-:root {
-    --text-primary: #333333;
-    --text-heading: #1a1a1a;
-    --text-accent: #0c6e6f;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f9f9f9;
-    --bg-body: #fdf6ec; /* ベージュ系の背景色を追加 */
-    --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-}
-
-/* ===== 基本設定 ===== */
-body {
-    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-body);
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-/* ===== タイポグラフィ ===== */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-heading);
-}
-
-/* ===== ヘッダー ===== */
+/* ===== ヘッダー（共通） ===== */
 header {
-    position: relative;
-    background-color: #0c6e6f;
+    background-color: #0e7b78;
     color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .top-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
     position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
 }
 
-h1 {
-    color: #ffffff;
+/* ===== PCナビゲーション ===== */
+.nav-pc {
+    display: flex;
+    align-items: center;
+}
+
+.nav-pc ul {
+    display: flex;
+    list-style: none;
     margin: 0;
-    font-size: 1.5rem;
-    z-index: 1001;
+    padding: 0;
 }
 
-/* ===== ハンバーガーメニュー ===== */
+.nav-pc li {
+    margin: 0 0.8rem;
+}
+
+.nav-pc .nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-pc .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== モバイルナビゲーション ===== */
 .hamburger {
     display: none;
     background: none;
     border: none;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
     cursor: pointer;
-    z-index: 1002;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+    padding: 0.5rem;
+    z-index: 1001;
 }
 
 .hamburger-line {
@@ -74,134 +65,381 @@ h1 {
     width: 24px;
     height: 2px;
     background-color: #ffffff;
-    margin: 5px auto;
+    margin: 5px 0;
     transition: all 0.3s ease;
-    border-radius: 2px;
 }
 
-/* ナビゲーションメニュー */
-.header-nav {
-    display: flex;
-    align-items: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 1.5rem;
-}
-
-.nav-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 0.5rem 0;
-    position: relative;
-}
-
-.nav-link:hover {
-    color: #e0e0e0;
-}
-
-/* オーバーレイ */
 .overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 998;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .overlay.active {
-    display: block;
     opacity: 1;
+    visibility: visible;
 }
 
-/* タブレット・モバイルスタイル */
+.header-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 350px;
+    height: 100%;
+    background-color: #0e7b78;
+    z-index: 1000;
+    transition: right 0.4s ease-in-out;
+    padding: 80px 20px 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.header-nav.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    transform-origin: center;
+}
+
+.close-btn::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.nav-menu li {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* ===== レスポンシブデザイン ===== */
+/* 769px以上（PC） */
+@media (min-width: 769px) {
+    .hamburger,
+    .overlay,
+    .header-nav {
+        display: none !important;
+    }
+
+    .nav-pc {
+        display: flex !important;
+    }
+}
+
+/* 768px以下（タブレット・スマホ） */
+@media (max-width: 768px) {
+    .nav-pc {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: block;
+        position: fixed;
+        right: 15px;
+        top: 15px;
+        z-index: 1001;
+    }
+
+    .header-nav {
+        padding: 70px 20px 30px;
+        width: 100%;
+        max-width: 300px;
+        right: -100%;
+    }
+
+    .nav-menu {
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        overflow-y: auto;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 12px 15px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .close-btn {
+        right: 15px;
+        top: 15px;
+    }
+
+    /* オーバーレイの調整 */
+    .overlay {
+        z-index: 999;
+    }
+
+    /* スクロールバーのスタイリング */
+    .header-nav::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .header-nav::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+
+    .header-nav::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+/* メインビジュアル */
+header {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0e7b78; /* フッターと同じ色に統一 */
+}
+
+header img {
+    width: 100%;
+    height: 75vh; /* 3. 画面の75%の高さに調整 */
+    max-height: 800px;
+    min-height: 400px; /* 最小高さを設定 */
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #0e7b78;
+    border-radius: 4px;
+    z-index: 1001;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #0e7b78;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* メニューオーバーレイ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* メニューコンテンツ */
+.header-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 350px;
+    height: 100%;
+    background-color: #0e7b78;
+    z-index: 1000;
+    transition: right 0.4s ease-in-out;
+    padding: 60px 20px 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.header-nav.active {
+    right: 0;
+}
+
+/* 閉じるボタン */
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    transform-origin: center;
+}
+
+.close-btn::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.close-btn:hover::before,
+.close-btn:hover::after {
+    opacity: 0.8;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.nav-menu li {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* レスポンシブ調整 */
 @media (max-width: 1024px) {
-    .top-bar {
-        padding: 1rem;
-        justify-content: space-between;
-        min-height: 60px;
+    header img {
+        height: 70vh;
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    header img {
+        height: 60vh;
+        min-height: 300px;
     }
     
     .hamburger {
-        display: block;
+        right: 15px;
+        top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header img {
+        height: 50vh;
+        min-height: 250px;
     }
     
     .header-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: #fdf6ec;
-        padding: 80px 20px 40px;
-        z-index: 1000;
-        box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-        overflow-y: auto;
-    }
-    
-    .header-nav.active {
-        right: 0;
-    }
-    
-    .nav-menu {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
-        width: 100%;
+        width: 90%;
     }
     
     .nav-link {
-        color: #0c6e6f;
-        display: block;
-        padding: 1rem 1.5rem;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-link:hover {
-        background-color: rgba(12, 110, 111, 0.1);
-        color: #0c6e6f;
-    }
-    
-    /* ハンバーガーメニューが開いた時のアニメーション */
-    .hamburger.active .hamburger-line:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-    }
-    
-    .hamburger.active .hamburger-line:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.active .hamburger-line:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-    }
-}
-
-/* スマホ用の追加調整 */
-@media (max-width: 480px) {
-    .header-nav {
-        width: 85%;
-    }
-    
-    .hamburger {
-        right: 10px;
-    }
-    
-    h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        padding: 8px 0;
     }
 }
 
@@ -285,12 +523,6 @@ main {
     padding: 0;
 }
 
-.hp-col li {
-    margin-bottom: 0.8rem;
-    color: #555;
-    line-height: 1.6;
-}
-
 .hp-link {
     display: inline-block;
     background-color: var(--text-accent);
@@ -345,12 +577,6 @@ main {
 .wordpress-content ul {
     margin: 1rem 0 1.5rem 1.5rem;
     padding: 0;
-}
-
-.wordpress-content li {
-    margin-bottom: 0.8rem;
-    color: #555;
-    line-height: 1.6;
 }
 
 .wordpress-note {
@@ -588,6 +814,7 @@ main {
 .card-button:hover {
     background-color: #0a5c5d;
     transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== プロフィールセクション ===== */
@@ -644,10 +871,6 @@ main {
 
 .profile-text p:not(:first-child) {
     margin-top: 1.5rem;
-}
-
-.profile-text p:first-of-type {
-    margin-top: 1rem;
 }
 
 .profile-list {
@@ -1987,6 +2210,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
 .pricing-table td {
@@ -2069,81 +2293,63 @@ main {
 }
 
 /* ===== フッター ===== */
-.site-footer {
-    background: #0c6e6f;
+footer {
+    background-color: #0e7b78;
     color: #ffffff;
+    padding: 3rem 0;
     text-align: center;
-    padding: 2rem 1rem;
-    margin-top: 3rem;
-    width: 100%;
-    box-sizing: border-box;
+    margin-top: 0;
+    border-top: none;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-links {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.footer-policy-center,
-.footer-copy-center {
-    width: 100%;
-    text-align: center;
-}
-
-.footer-link {
+.footer-links a {
     color: #ffffff;
     text-decoration: none;
-    transition: color 0.3s ease;
-    display: inline-block;
-    margin: 0 0.5rem;
-    padding: 0.2rem 0;
+    font-size: 0.95rem;
+    transition: opacity 0.3s ease;
 }
 
-.footer-link:hover {
-    color: #e0e0e0;
+.footer-links a:hover {
+    opacity: 0.8;
     text-decoration: underline;
 }
 
 .copyright {
-    margin-top: 1rem;
     font-size: 0.9rem;
-    opacity: 0.8;
-    line-height: 1.5;
+    opacity: 0.9;
+    margin-top: 1.5rem;
 }
 
-/* レスポンシブ対応 */
+/* レスポンシブ調整 */
 @media (max-width: 768px) {
-    .site-footer {
-        padding: 1.5rem 1rem;
+    footer {
+        padding: 2rem 0;
     }
     
-    .footer-content {
-        gap: 0.8rem;
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
     }
     
-    .footer-link {
-        margin: 0 0.3rem;
-        padding: 0.1rem 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .site-footer {
-        padding: 1.2rem 0.8rem;
-    }
-    
-    .footer-link {
-        display: block;
-        margin: 0.3rem 0;
+    .footer-links a {
+        font-size: 0.9rem;
     }
     
     .copyright {
         font-size: 0.8rem;
-        margin-top: 0.5rem;
     }
 }
