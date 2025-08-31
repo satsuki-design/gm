@@ -1,3 +1,6 @@
+/* 文字コードの宣言 */
+@charset "UTF-8";
+
 /* Pricing Section */
 .pricing-section {
     background-color: #fff;

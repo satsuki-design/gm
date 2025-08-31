@@ -71,31 +71,42 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.className = 'overlay';
     document.body.appendChild(overlay);
     
+    // メニューの状態を管理
+    let isMenuOpen = false;
+    
+    // メニューを開く関数
+    function openMenu() {
+        isMenuOpen = true;
+        hamburger.classList.add('active');
+        nav.classList.add('active');
+        overlay.classList.add('active');
+        body.style.overflow = 'hidden';
+        hamburger.setAttribute('aria-expanded', 'true');
+    }
+    
     // メニューを閉じる関数
     function closeMenu() {
+        isMenuOpen = false;
         hamburger.classList.remove('active');
         nav.classList.remove('active');
         overlay.classList.remove('active');
         body.style.overflow = '';
+        hamburger.setAttribute('aria-expanded', 'false');
     }
     
-    // メニューを開閉する関数
+    // メニューのトグル
     function toggleMenu() {
-        hamburger.classList.toggle('active');
-        nav.classList.toggle('active');
-        overlay.classList.toggle('active');
-        
-        // スクロールの制御
-        if (hamburger.classList.contains('active')) {
-            body.style.overflow = 'hidden';
+        if (isMenuOpen) {
+            closeMenu();
         } else {
-            body.style.overflow = '';
+            openMenu();
         }
     }
     
     // ハンバーガーメニュークリック時の処理
     hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
+        e.preventDefault();
         toggleMenu();
     });
     
@@ -103,9 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.addEventListener('click', closeMenu);
     
     // メニュー内のリンクをクリックしたらメニューを閉じる
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
+        link.addEventListener('click', function(e) {
+            // 現在のページへのリンクの場合はデフォルトの動作を防ぐ
+            if (this.getAttribute('href') === window.location.pathname.split('/').pop()) {
+                e.preventDefault();
+            }
+            closeMenu();
+        });
     });
     
     // ウィンドウリサイズ時の処理
@@ -125,7 +142,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // メニュー外をクリックしたら閉じる
     document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 1024 && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+        if (isMenuOpen && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    // ESCキーでメニューを閉じる
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
             closeMenu();
         }
     });
