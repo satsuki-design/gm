@@ -2353,39 +2353,34 @@ main {
 
 /* ===== フッター ===== */
 footer {
-    background-color: #0c6e6f;
-    color: #ffffff;
-    padding: 3rem 0;
-    text-align: center;
-    margin-top: 0;
-    border-top: none;
-}
-
-.site-footer {
-    background-color: #0c6e6f;
+    background-color: #0e7b78;
     color: #ffffff;
     padding: 2rem 0;
-    margin-top: 3rem;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
+    line-height: 1.6;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    text-align: center;
 }
 
 .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
 .footer-link {
     color: #ffffff;
     text-decoration: none;
-    margin: 0 0.5rem;
-    font-size: 0.9rem;
     transition: opacity 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .footer-link:hover {
@@ -2394,30 +2389,31 @@ footer {
 }
 
 .footer-separator {
-    margin: 0 0.5rem;
     color: rgba(255, 255, 255, 0.5);
+    margin: 0 0.5rem;
 }
 
 .copyright {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     footer {
-        padding: 2rem 0;
+        padding: 1.5rem 0;
+        border-radius: 0;
     }
     
     .footer-links {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.8rem;
     }
     
     .footer-link {
         display: block;
-        margin: 0.5rem 0;
+        padding: 0.3rem 0;
     }
     
     .footer-separator {
@@ -2489,4 +2485,63 @@ footer {
     .hp-col .detail-button {
         margin: 12px 0;
     }
+}
+
+/* Contact Description */
+.contact-description {
+    text-align: center;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Adjust existing contact message styles if needed */
+.contact-message {
+    margin: 1.5rem 0;
+}
+
+/* Back to Top Button */
+.back-home {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 0 1rem;
+}
+
+.btn-home {
+    display: inline-block;
+    background-color: #0c7b77;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-home:hover {
+    background-color: #095f5c;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .back-home {
+        margin: 2.5rem 0;
+    }
+    
+    .btn-home {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Remove duplicate return button styles */
+.return-button,
+.return-button-hp {
+    display: none;
 }
