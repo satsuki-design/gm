@@ -58,3 +58,75 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 });
+
+// ハンバーガーメニューの処理
+document.addEventListener('DOMContentLoaded', function() {
+    // 要素を取得
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.header-nav');
+    const body = document.body;
+    
+    // オーバーレイ要素を作成
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
+    
+    // メニューを閉じる関数
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+    }
+    
+    // メニューを開閉する関数
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        // スクロールの制御
+        if (hamburger.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
+    }
+    
+    // ハンバーガーメニュークリック時の処理
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // オーバーレイをクリックしたらメニューを閉じる
+    overlay.addEventListener('click', closeMenu);
+    
+    // メニュー内のリンクをクリックしたらメニューを閉じる
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+    
+    // ウィンドウリサイズ時の処理
+    function handleResize() {
+        // タブレット/デスクトップサイズに戻ったらメニューを閉じる
+        if (window.innerWidth > 1024) {
+            closeMenu();
+        }
+    }
+    
+    // リサイズイベントの設定（スロットリング付き）
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(handleResize, 100);
+    });
+    
+    // メニュー外をクリックしたら閉じる
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024 && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+});

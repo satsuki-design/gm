@@ -27,9 +27,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== ヘッダー ===== */
 header {
-    background-color: #0c6e6f; /* アクセントカラーに合わせた濃い緑 */
+    position: relative;
+    background-color: #0c6e6f;
     color: #ffffff;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .top-bar {
@@ -37,7 +38,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #0c6e6f; /* ヘッダー背景と同じ色に */
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 h1 {
@@ -78,10 +81,210 @@ nav ul li a:active {
 header img {
     width: 100%;
     height: auto;
-    min-height: 300px;
-    max-height: 500px;
-    object-fit: cover;
     display: block;
+    object-fit: cover;
+    object-position: center;
+    max-height: 80vh; /* 適切な最大高を設定 */
+}
+
+/* タブレット用スタイル */
+@media (max-width: 1024px) {
+    header img {
+        max-height: 70vh;
+    }
+}
+
+/* タブレット用スタイル */
+@media (max-width: 768px) {
+    header img {
+        max-height: 60vh;
+    }
+    
+    .top-bar {
+        padding: 0.8rem 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* スマホ用スタイル */
+@media (max-width: 480px) {
+    header img {
+        max-height: 50vh;
+        padding: 0;
+    }
+    
+    .top-bar {
+        padding: 0.5rem 1rem;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    nav ul li {
+        margin: 0.2rem;
+    }
+    
+    nav ul li a {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 小さなスマホ用スタイル */
+@media (max-width: 360px) {
+    header img {
+        max-height: 45vh;
+    }
+    
+    nav ul li a {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== ハンバーガーメニュー ===== */
+.hamburger {
+    display: none; /* デスクトップでは非表示 */
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+}
+
+/* ナビゲーション */
+.header-nav {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+}
+
+/* モバイルスタイル */
+@media (max-width: 1024px) {
+    .top-bar {
+        padding: 1rem;
+        justify-content: space-between;
+        min-height: 60px;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+        padding-right: 0;
+        margin: 0;
+    }
+    
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .header-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #0c6e6f;
+        padding: 80px 20px 40px;
+        transition: right 0.3s ease;
+        z-index: 999;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-nav.active {
+        right: 0;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 1rem;
+        border-radius: 4px;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* ハンバーガーメニューが開いた時のアニメーション */
+    .hamburger.active .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+/* スマホ用の追加調整 */
+@media (max-width: 480px) {
+    .header-nav {
+        width: 80%;
+    }
+    
+    .hamburger {
+        right: 10px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+    }
 }
 
 /* ===== メイン ===== */
@@ -580,66 +783,56 @@ main {
     border-radius: 8px;
 }
 
-/* ===== レスポンシブ対応 ===== */
+/* ===== トーク画像 ===== */
+.talk-image-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* はみ出し防止 */
+}
+
+.responsive-profile-image {
+    width: 100%; /* 親要素に合わせて幅を調整 */
+    max-width: 100%; /* 親要素を超えないように */
+    height: auto; /* 縦横比を維持 */
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    object-fit: contain; /* 画像のアスペクト比を維持 */
+}
+
+/* タブレット用スタイル */
+@media (max-width: 1024px) {
+    .talk-image-container {
+        max-width: 90%;
+        margin: 20px auto;
+    }
+}
+
+/* スマホ用スタイル */
 @media (max-width: 768px) {
-    .profile-supplement-container {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1.5rem;
+    .talk-image-container {
+        max-width: 95%;
+        padding: 0 15px;
+    }
+}
+
+/* 小さなスマホ用スタイル */
+@media (max-width: 480px) {
+    .talk-image-container {
+        margin: 10px auto 15px; /* 上下の余白を調整 */
+        padding: 0 10px;
     }
     
-    .supplement-image {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
+    .responsive-profile-image {
+        border-radius: 6px; /* 小さな画面で角丸を少し小さく */
     }
-}
-
-/* ===== フッター ===== */
-.site-footer {
-    background: #0c6e6f; /* ヘッダーと同じ濃い緑に */
-    color: #ffffff;
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: 3rem;
-}
-
-.footer-policy-center {
-    margin-bottom: 1rem;
-}
-
-.footer-link {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-    color: #e0e0e0;
-    text-decoration: underline;
-}
-
-.footer-copy-center {
-    font-size: 0.9rem;
-    opacity: 0.8;
 }
 
 /* ===== レスポンシブ対応 ===== */
-/* ===== タブレット用レスポンシブ（2列表示） ===== */
-@media (max-width: 900px) and (min-width: 769px) {
-    .card-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        gap: 1.5rem;
-        max-width: 800px;
-        padding: 0 1rem;
-    }
-    
-    .card {
-        min-height: 350px;
-    }
-}
-
 @media (max-width: 768px) {
     .top-bar {
         flex-direction: column;
@@ -1856,28 +2049,6 @@ main {
     }
 }
 
-/* ===== トーク画像 ===== */
-.talk-image-container {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: var(--bg-primary);
-}
-
-.responsive-profile-image {
-    max-width: 800px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* ===== 既存のトーク画像コンテナスタイルを上書き ===== */
-.talk-image-container {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: var(--bg-primary);
-}
-
 /* ===== 制作料金セクション ===== */
 .pricing-section {
     padding: 4rem 1rem;
@@ -1976,5 +2147,85 @@ main {
     
     .pricing-table tr:last-child {
         margin-bottom: 0;
+    }
+}
+
+/* ===== フッター ===== */
+.site-footer {
+    background: #0c6e6f;
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-policy-center,
+.footer-copy-center {
+    width: 100%;
+    text-align: center;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.2rem 0;
+}
+
+.footer-link:hover {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .footer-content {
+        gap: 0.8rem;
+    }
+    
+    .footer-link {
+        margin: 0 0.3rem;
+        padding: 0.1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .footer-link {
+        display: block;
+        margin: 0.3rem 0;
+    }
+    
+    .copyright {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
     }
 }

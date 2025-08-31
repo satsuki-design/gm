@@ -10,8 +10,13 @@
     <header>
         <div class="top-bar">
             <h1>さつき Web Designer</h1>
+            <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <nav class="header-nav">
-                <ul>
+                <ul class="nav-menu">
                     <li><a href="index.html">ホーム</a></li>
                     <li><a href="hp.html">HP/LP実績</a></li>
                     <li><a href="web-design.html">Webデザイン実績</a></li>
@@ -183,12 +188,18 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-policy-center">
-            <a href="legal.html" class="footer-link">特商表記&プライバシーポリシー</a>
-        </div>
-        <div class="footer-copy-center">
-            Copyright さつき Web designer All Rights Reserved.
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="legal.html" class="footer-link">特商表記&プライバシーポリシー</a>
+            </div>
+            <div class="copyright">
+                &copy; <span id="current-year"></span> さつき Web designer All Rights Reserved.
+            </div>
         </div>
     </footer>
+    <script>
+        // 現在の年を自動的に更新
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
