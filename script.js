@@ -21,3 +21,40 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
         }
     });
 });
+
+// スクロールアニメーションの初期化
+document.addEventListener('DOMContentLoaded', function() {
+    // アニメーション対象のセクションを取得
+    const sections = document.querySelectorAll('#skill, #works, #about, #contact');
+    
+    // セクションに初期クラスを追加
+    sections.forEach(section => {
+        section.classList.add('section-animate');
+    });
+
+    // Intersection Observerのオプション
+    const observerOptions = {
+        root: null, // ビューポートをルートとして使用
+        rootMargin: '0px',
+        threshold: 0.1 // 10%見えたら発火
+    };
+
+    // コールバック関数
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                // 一度表示された要素は監視をやめる（パフォーマンスのため）
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    // Intersection Observerのインスタンスを作成
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // 各セクションを監視対象に追加
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});

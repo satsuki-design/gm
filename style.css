@@ -1,22 +1,35 @@
-/* ===== ポートフォリオサイト CSS ===== */
+/* ===== ベースカラー設定 ===== */
+:root {
+    --text-primary: #333333;
+    --text-heading: #1a1a1a;
+    --text-accent: #0c6e6f;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --bg-body: #fdf6ec; /* ベージュ系の背景色を追加 */
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
 
-/* 基本設定 */
+/* ===== 基本設定 ===== */
 body {
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f8f0;
-    color: #333;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
-/* ヘッダー */
+/* ===== タイポグラフィ ===== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-heading);
+}
+
+/* ===== ヘッダー ===== */
 header {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 0;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #0c6e6f; /* アクセントカラーに合わせた濃い緑 */
+    color: #ffffff;
+    box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .top-bar {
@@ -24,11 +37,11 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #4CAF50;
+    background-color: #0c6e6f; /* ヘッダー背景と同じ色に */
 }
 
 h1 {
-    color: #fff;
+    color: #ffffff; /* 白に変更 */
     margin: 0;
     font-size: 1.8rem;
     font-weight: bold;
@@ -47,16 +60,19 @@ nav ul li {
 }
 
 nav ul li a {
+    color: #ffffff;
     text-decoration: none;
-    color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-nav ul li a:hover {
-    background-color: rgba(255,255,255,0.2);
+nav ul li a:hover,
+nav ul li a:focus,
+nav ul li a:active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
 }
 
 header img {
@@ -68,14 +84,14 @@ header img {
     display: block;
 }
 
-/* メイン */
+/* ===== メイン ===== */
 main {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* セクション見出し */
+/* ===== セクション見出し ===== */
 .section-heading {
     text-align: center;
     padding: 2rem 0;
@@ -84,7 +100,7 @@ main {
 
 .section-heading h2 {
     font-size: 2rem;
-    color: #4CAF50;
+    color: var(--text-heading);
     margin: 0 auto 1rem auto;
     padding-bottom: 0.5rem;
     position: relative;
@@ -100,10 +116,10 @@ main {
     width: 300px;
     max-width: 80vw;
     height: 3px;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
 }
 
-/* HPページの画像サイズ調整 */
+/* ===== HPページの画像サイズ調整 ===== */
 .hp-image {
     width: 100%;
     max-width: 600px;
@@ -114,7 +130,7 @@ main {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* HPページの2カラムレイアウト */
+/* ===== HPページの2カラムレイアウト ===== */
 .hp-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -125,7 +141,7 @@ main {
 }
 
 .hp-col {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -134,12 +150,12 @@ main {
 
 .hp-col p {
     margin-bottom: 1.5rem;
-    color: #333;
+    color: var(--text-primary);
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
 .hp-col strong {
-    color: #2e7d32;
+    color: var(--text-accent);
     font-weight: 600;
 }
 
@@ -156,7 +172,7 @@ main {
 
 .hp-link {
     display: inline-block;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
     color: white;
     padding: 0.8rem 1.5rem;
     text-decoration: none;
@@ -167,10 +183,10 @@ main {
 }
 
 .hp-link:hover {
-    background-color: #45a049;
+    background-color: #0a5c5d;
 }
 
-/* WordPress実績セクション */
+/* ===== WordPress実績セクション ===== */
 .wordpress-section {
     max-width: 1000px;
     margin: 3rem auto;
@@ -179,7 +195,7 @@ main {
 
 .wordpress-section h3 {
     font-size: 1.5rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 2rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -187,7 +203,7 @@ main {
 }
 
 .wordpress-content {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -196,12 +212,12 @@ main {
 
 .wordpress-content p {
     margin-bottom: 1.5rem;
-    color: #333;
+    color: var(--text-primary);
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
 .wordpress-content strong {
-    color: #2e7d32;
+    color: var(--text-accent);
     font-weight: 600;
 }
 
@@ -217,16 +233,15 @@ main {
 }
 
 .wordpress-note {
-    background-color: #f8fdf8;
+    background-color: var(--bg-secondary);
     padding: 1.5rem;
     border-radius: 8px;
-    border-left: 4px solid #4CAF50;
-    margin-top: 2rem;
+    border-left: 4px solid var(--text-accent);
 }
 
 .wordpress-note p {
     margin-bottom: 0.8rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     font-size: 0.95rem;
 }
 
@@ -234,9 +249,9 @@ main {
     margin-bottom: 0;
 }
 
-/* 制作の流れセクション */
+/* ===== 制作の流れセクション ===== */
 .production-flow-section {
-    background-color: #f8fdf8;
+    background-color: var(--bg-secondary);
     padding: 3rem 0;
     margin: 2rem 0;
 }
@@ -249,7 +264,7 @@ main {
 
 .production-flow-title {
     font-size: 2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 2.5rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -257,7 +272,7 @@ main {
 }
 
 .production-flow-content {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -266,7 +281,7 @@ main {
 
 .flow-subtitle {
     font-size: 1.3rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 2rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -285,9 +300,9 @@ main {
     position: relative;
     padding: 1rem 0 1rem 3rem;
     margin-bottom: 0.8rem;
-    border-bottom: 1px solid #e8f5e8;
+    border-bottom: 1px solid var(--border-color);
     line-height: 1.7;
-    color: #333;
+    color: var(--text-primary);
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
@@ -300,7 +315,7 @@ main {
     position: absolute;
     left: 0;
     top: 1rem;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
     color: white;
     width: 2rem;
     height: 2rem;
@@ -313,22 +328,22 @@ main {
 }
 
 .flow-notes {
-    background-color: #f0f8f0;
+    background-color: var(--bg-secondary);
     padding: 1.5rem;
     border-radius: 8px;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--text-accent);
 }
 
 .flow-notes p {
     margin: 0;
-    color: #2e7d32;
+    color: var(--text-accent);
     font-size: 0.95rem;
     line-height: 1.6;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
 .production-philosophy {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -336,7 +351,7 @@ main {
 
 .philosophy-title {
     font-size: 1.5rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 2rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -345,14 +360,14 @@ main {
 
 .philosophy-content p {
     margin: 0;
-    color: #333;
+    color: var(--text-primary);
     line-height: 1.8;
     text-align: center;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
     font-size: 1rem;
 }
 
-/* カードコンテナ */
+/* ===== カードコンテナ ===== */
 .card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -363,9 +378,10 @@ main {
     padding: 0 1rem;
 }
 
-/* カード */
+/* ===== カード ===== */
 .card {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -387,7 +403,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9;
+    background-color: var(--bg-secondary);
 }
 
 .card-image-container img {
@@ -410,7 +426,7 @@ main {
 }
 
 .card-content h3 {
-    color: #4CAF50;
+    color: var(--text-accent);
     margin: 0 0 1rem 0;
     font-size: 1.3rem;
     font-weight: bold;
@@ -433,11 +449,11 @@ main {
     hyphens: auto;
 }
 
-/* カードボタン */
+/* ===== カードボタン ===== */
 .card-button {
     display: inline-block;
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: var(--text-accent);
+    color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 6px;
     text-decoration: none;
@@ -449,13 +465,13 @@ main {
 }
 
 .card-button:hover {
-    background-color: #388e3c;
+    background-color: #0a5c5d;
     transform: translateY(-2px);
 }
 
-/* プロフィールセクション */
+/* ===== プロフィールセクション ===== */
 .profile-section {
-    background: #fff;
+    background: var(--bg-primary);
     padding: 3rem 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -467,9 +483,9 @@ main {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    color: #4CAF50;
+    color: var(--text-accent);
     margin-bottom: 2rem;
-    border-bottom: 3px solid #4CAF50;
+    border-bottom: 3px solid var(--text-accent);
     display: inline-block;
     width: 100%;
     padding-bottom: 0.5rem;
@@ -502,7 +518,7 @@ main {
 .profile-text p {
     margin: 0;
     line-height: 1.8;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .profile-text p:not(:first-child) {
@@ -524,10 +540,65 @@ main {
     line-height: 1.6;
 }
 
-/* フッター */
+/* ===== 自己紹介補足セクション ===== */
+.profile-supplement {
+    background-color: var(--bg-secondary);
+    padding: 4rem 1rem;
+}
+
+.profile-supplement-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.supplement-text {
+    flex: 1;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.supplement-text p {
+    margin-bottom: 1.2rem;
+}
+
+.supplement-image {
+    flex: 0 0 40%;
+    text-align: center;
+    padding: 1rem;
+}
+
+.supplement-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media (max-width: 768px) {
+    .profile-supplement-container {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .supplement-image {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== フッター ===== */
 .site-footer {
-    background: #333;
-    color: #fff;
+    background: #0c6e6f; /* ヘッダーと同じ濃い緑に */
+    color: #ffffff;
     text-align: center;
     padding: 2rem 1rem;
     margin-top: 3rem;
@@ -538,13 +609,13 @@ main {
 }
 
 .footer-link {
-    color: #4CAF50;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-    color: #66BB6A;
+    color: #e0e0e0;
     text-decoration: underline;
 }
 
@@ -553,8 +624,8 @@ main {
     opacity: 0.8;
 }
 
-/* レスポンシブ対応 */
-/* タブレット用レスポンシブ（2列表示） */
+/* ===== レスポンシブ対応 ===== */
+/* ===== タブレット用レスポンシブ（2列表示） ===== */
 @media (max-width: 900px) and (min-width: 769px) {
     .card-container {
         grid-template-columns: repeat(2, 1fr);
@@ -753,12 +824,12 @@ main {
     }
 }
 
-/* Webデザイン実績ページ専用スタイル */
+/* ===== Webデザイン実績ページ専用スタイル ===== */
 .portfolio-section {
     max-width: 1200px;
     margin: 5rem auto;
     padding: 4rem 2rem;
-    background: #fff;
+    background: var(--bg-primary);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     position: relative;
@@ -776,13 +847,13 @@ main {
 .section-title {
     text-align: center;
     font-size: 2.5rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     margin-bottom: 4rem;
     margin-top: 0;
     font-weight: 600;
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
     padding-bottom: 1rem;
-    border-bottom: 3px solid #4CAF50;
+    border-bottom: 3px solid var(--text-accent);
     display: inline-block;
     width: 100%;
 }
@@ -798,7 +869,7 @@ main {
 }
 
 .portfolio-card {
-    background: #ffffff;
+    background: var(--bg-primary);
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     padding: 1.5rem;
@@ -831,7 +902,7 @@ main {
 
 .portfolio-desc h3 {
     font-size: 1.3rem;
-    color: #4CAF50;
+    color: var(--text-accent);
     margin: 0 0 1rem 0;
     font-weight: bold;
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -845,24 +916,24 @@ main {
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
 
-/* セクション区切り線 */
+/* ===== セクション区切り線 ===== */
 .section-divider {
     width: 80%;
     height: 3px;
-    background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+    background: linear-gradient(90deg, transparent, var(--text-accent), transparent);
     margin: 6rem auto;
     border-radius: 1px;
     position: relative;
     z-index: 2;
 }
 
-/* トップページに戻るボタンコンテナ */
+/* ===== トップページに戻るボタンコンテナ ===== */
 .back-button-container {
     text-align: center;
     margin: 4rem 0 2rem 0;
 }
 
-/* レスポンシブ対応 - Webデザイン実績ページ */
+/* ===== レスポンシブ対応 - Webデザイン実績ページ ===== */
 @media (max-width: 900px) {
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -924,11 +995,11 @@ main {
     }
 }
 
-/* Kindle出版実績ポートフォリオセクション用のスタイル */
+/* ===== Kindle出版実績ポートフォリオセクション用のスタイル ===== */
 .kindle-portfolio-section {
     margin: 4rem 0;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--bg-secondary);
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -936,14 +1007,14 @@ main {
 
 .kindle-portfolio-title {
     font-size: 2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 3rem;
     font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'MS PGothic', sans-serif;
     font-weight: 600;
 }
 
-/* 1段目：図解2点横並び*/
+/* ===== 1段目：図解2点横並び ===== */
 .kindle-infographic-row {
     display: flex;
     flex-wrap: wrap;
@@ -971,7 +1042,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 15px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-secondary);
 }
 
 .kindle-infographic-img:hover {
@@ -988,7 +1059,7 @@ main {
     padding: 0 0.5rem;
 }
 
-/* 2段目：アイキャッチ3点横並び */
+/* ===== 2段目：アイキャッチ3点横並び ===== */
 .kindle-eyecatch-row {
     display: flex;
     flex-wrap: wrap;
@@ -1016,7 +1087,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 15px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-secondary);
 }
 
 .kindle-eyecatch-img:hover {
@@ -1033,7 +1104,7 @@ main {
     padding: 0 0.5rem;
 }
 
-/* Kindleポートフォリオ用レスポンシブ対応 */
+/* ===== Kindleポートフォリオ用レスポンシブ対応 ===== */
 @media (max-width: 900px) {
     .kindle-portfolio-section {
         padding: 1.5rem;
@@ -1121,11 +1192,11 @@ main {
     }
 }
 
-/* Kindleページ内の動画セクション用スタイル */
+/* ===== Kindleページ内の動画セクション用スタイル ===== */
 .movie-section {
     margin: 4rem 0;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -1133,7 +1204,7 @@ main {
 
 .movie-section h3 {
     font-size: 1.8rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 3rem;
     font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'MS PGothic', sans-serif;
@@ -1166,7 +1237,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 15px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-secondary);
 }
 
 .movie-frame video:hover {
@@ -1185,7 +1256,7 @@ main {
     padding: 0 0.5rem;
 }
 
-/* 動画セクション用レスポンシブ対応 */
+/* ===== 動画セクション用レスポンシブ対応 ===== */
 @media (max-width: 900px) {
     .movie-section {
         padding: 1.5rem;
@@ -1246,11 +1317,11 @@ main {
     }
 }
 
-/* 実績ハイライトセクション用のスタイル */
+/* ===== 実績ハイライトセクション用のスタイル ===== */
 .achievements-section {
     margin: 4rem 0;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -1258,7 +1329,7 @@ main {
 
 .achievements-title {
     font-size: 2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 3rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -1275,7 +1346,7 @@ main {
 .achievements-table {
     width: 100%;
     max-width: 800px;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-collapse: collapse;
@@ -1284,23 +1355,23 @@ main {
 }
 
 .achievements-table thead {
-    background-color: #f8fdf8;
+    background-color: var(--bg-secondary);
 }
 
 .achievements-table th {
     padding: 1.5rem 2rem;
     text-align: left;
     font-weight: 600;
-    color: #2e7d32;
+    color: var(--text-accent);
     font-size: 1.1rem;
-    border-bottom: 2px solid #e8f5e8;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .achievements-table td {
     padding: 1.5rem 2rem;
-    color: #333;
+    color: var(--text-primary);
     line-height: 1.6;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color);
     vertical-align: top;
 }
 
@@ -1309,18 +1380,18 @@ main {
 }
 
 .achievements-table tbody tr:hover {
-    background-color: #f9fdf9;
+    background-color: var(--bg-secondary);
     transition: background-color 0.3s ease;
 }
 
 .achievements-table th:first-child,
 .achievements-table td:first-child {
     font-weight: 600;
-    color: #2e7d32;
+    color: var(--text-accent);
     min-width: 120px;
 }
 
-/* 実績ハイライト用レスポンシブ対応 */
+/* ===== 実績ハイライト用レスポンシブ対応 ===== */
 @media (max-width: 900px) {
     .achievements-section {
         padding: 1.5rem;
@@ -1370,7 +1441,7 @@ main {
     }
 }
 
-/* 極小画面での横スクロール対応 */
+/* ===== 極小画面での横スクロール対応 ===== */
 @media (max-width: 480px) {
     .achievements-table-container {
         overflow-x: scroll;
@@ -1382,12 +1453,12 @@ main {
     }
 }
 
-/* トップページに戻るボタン用スタイル */
+/* ===== トップページに戻るボタン用スタイル ===== */
 .return-button {
     display: block;
     margin: 60px auto;
     padding: 20px 40px;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -1401,17 +1472,17 @@ main {
 }
 
 .return-button:hover {
-    background-color: #45a049;
+    background-color: #0a5c5d;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* HP/LPページ用トップページに戻るボタン */
+/* ===== HP/LPページ用トップページに戻るボタン ===== */
 .return-button-hp {
     display: block;
     margin: 40px auto;
     padding: 12px 24px;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
     color: white;
     font-weight: bold;
     font-size: 18px;
@@ -1425,20 +1496,20 @@ main {
 }
 
 .return-button-hp:hover {
-    background-color: #45a049;
+    background-color: #0a5c5d;
 }
 
-/* お問い合わせページ用スタイル */
+/* ===== お問い合わせページ用スタイル ===== */
 .contact-section {
     max-width: 1000px;
     margin: 4rem auto;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
 }
 
 .contact-section h2 {
     font-size: 2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 3rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -1446,8 +1517,8 @@ main {
 }
 
 .contact-form-container {
-    background-color: #ffffff;
-    border: 2px solid #ddd;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 3rem;
@@ -1468,9 +1539,9 @@ main {
 
 .form-label {
     flex: 0 0 200px;
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary);
     padding: 15px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1479,7 +1550,7 @@ main {
 
 .form-label label {
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary);
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
     margin-bottom: 5px;
     font-size: 0.95rem;
@@ -1499,15 +1570,15 @@ main {
 .form-input {
     flex: 1;
     padding: 15px;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
 }
 
 .form-input input,
 .form-input textarea {
     width: 100%;
     padding: 12px 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 1rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
@@ -1518,8 +1589,8 @@ main {
 .form-input input:focus,
 .form-input textarea:focus {
     outline: none;
-    border-color: #4CAF50;
-    background-color: #ffffff;
+    border-color: var(--text-accent);
+    background-color: var(--bg-primary);
 }
 
 .form-input textarea {
@@ -1531,11 +1602,11 @@ main {
     text-align: center;
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 .submit-button {
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
     color: white;
     padding: 15px 40px;
     border: none;
@@ -1548,11 +1619,34 @@ main {
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #0a5c5d;
     transform: translateY(-1px);
 }
 
-/* お問い合わせフォーム用レスポンシブ対応 */
+/* ===== お問い合わせフォームボタン ===== */
+.form-button-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.form-button {
+    display: inline-block;
+    background-color: #f28c28;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #e07c1f;
+}
+
+/* ===== お問い合わせフォーム用レスポンシブ対応 ===== */
 @media (max-width: 768px) {
     .contact-section {
         padding: 1rem;
@@ -1571,7 +1665,7 @@ main {
     .form-label {
         flex: none;
         border-right: none;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--border-color);
         padding: 10px 15px;
     }
     
@@ -1585,12 +1679,12 @@ main {
     }
 }
 
-/* 送信完了ページ用スタイル */
+/* ===== 送信完了ページ用スタイル ===== */
 .thanks-section {
     max-width: 800px;
     margin: 4rem auto;
     padding: 3rem 2rem;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -1598,7 +1692,7 @@ main {
 
 .thanks-section h2 {
     font-size: 2.2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     margin-bottom: 2rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
     font-weight: 600;
@@ -1611,7 +1705,7 @@ main {
 .thanks-message p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 1rem;
     font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
 }
@@ -1631,16 +1725,16 @@ main {
     }
 }
 
-/* アイキャッチ実績セクション用のスタイル */
+/* ===== アイキャッチ実績セクション用のスタイル ===== */
 .eyecatch-portfolio-section {
     margin: 4rem 0;
     padding: 0 2rem;
-    background-color: #f8fdf8;
+    background-color: var(--bg-secondary);
 }
 
 .eyecatch-section-title {
     font-size: 2rem;
-    color: #2e7d32;
+    color: var(--text-accent);
     text-align: center;
     margin-bottom: 3rem;
     font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'MS PGothic', sans-serif;
@@ -1657,7 +1751,7 @@ main {
     transform: translateX(-50%);
     width: 80px;
     height: 2px;
-    background-color: #4CAF50;
+    background-color: var(--text-accent);
 }
 
 .eyecatch-card-grid {
@@ -1669,7 +1763,7 @@ main {
 }
 
 .eyecatch-card {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -1687,7 +1781,7 @@ main {
 .eyecatch-img-container {
     width: 100%;
     overflow: hidden;
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1710,7 +1804,7 @@ main {
 }
 
 .eyecatch-card-content h3 {
-    color: #2e7d32;
+    color: var(--text-accent);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -1726,7 +1820,7 @@ main {
     font-size: 0.95rem;
 }
 
-/* アイキャッチセクション用レスポンシブ対応 */
+/* ===== アイキャッチセクション用レスポンシブ対応 ===== */
 @media (max-width: 900px) {
     .eyecatch-card-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1759,5 +1853,128 @@ main {
     
     .eyecatch-img-container {
         min-height: 150px;
+    }
+}
+
+/* ===== トーク画像 ===== */
+.talk-image-container {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: var(--bg-primary);
+}
+
+.responsive-profile-image {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ===== 既存のトーク画像コンテナスタイルを上書き ===== */
+.talk-image-container {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: var(--bg-primary);
+}
+
+/* ===== 制作料金セクション ===== */
+.pricing-section {
+    padding: 4rem 1rem;
+    background-color: var(--bg-primary);
+}
+
+.pricing-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pricing-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.pricing-table tr:last-child td {
+    border-bottom: none;
+}
+
+.pricing-table tr:not(.highlight) {
+    background-color: var(--bg-secondary);
+}
+
+.pricing-table tr.highlight {
+    background-color: #f0f7ff;
+    font-weight: bold;
+}
+
+.pricing-table td:first-child {
+    color: var(--text-primary);
+    width: 70%;
+}
+
+.pricing-table td:last-child {
+    color: var(--text-accent);
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+    width: 30%;
+}
+
+.pricing-note {
+    font-size: 0.8em;
+    color: #666;
+    font-weight: normal;
+    display: block;
+    margin-top: 0.3rem;
+    white-space: normal;
+}
+
+.pricing-notes {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    line-height: 1.6;
+}
+
+.pricing-notes p {
+    margin: 0.5rem 0;
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media (max-width: 768px) {
+    .pricing-table {
+        font-size: 0.9rem;
+    }
+    
+    .pricing-table td {
+        padding: 1rem;
+        display: block;
+        width: 100% !important;
+        text-align: left !important;
+    }
+    
+    .pricing-table tr {
+        margin-bottom: 1rem;
+        display: block;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .pricing-table tr:last-child {
+        margin-bottom: 0;
     }
 }
