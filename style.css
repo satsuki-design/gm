@@ -466,42 +466,6 @@ header img {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* レスポンシブ調整 */
-@media (max-width: 1024px) {
-    header img {
-        height: 70vh;
-        min-height: 350px;
-    }
-}
-
-@media (max-width: 768px) {
-    header img {
-        height: 60vh;
-        min-height: 300px;
-    }
-    
-    .hamburger {
-        right: 15px;
-        top: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    header img {
-        height: 50vh;
-        min-height: 250px;
-    }
-    
-    .header-nav {
-        width: 90%;
-    }
-    
-    .nav-link {
-        font-size: 1.1rem;
-        padding: 8px 0;
-    }
-}
-
 /* ===== メイン ===== */
 main {
     padding: 2rem;
@@ -1322,8 +1286,9 @@ main {
 
 /* ===== トップページに戻るボタンコンテナ ===== */
 .back-button-container {
-    text-align: center;
-    margin: 4rem 0 2rem 0;
+  text-align: center;
+  margin: 4rem 0 6rem; /* 上下の余白を調整（上:4rem, 下:6rem） */
+  padding: 0 1rem;
 }
 
 /* ===== レスポンシブ対応 - Webデザイン実績ページ ===== */
@@ -2352,42 +2317,72 @@ main {
 }
 
 /* ===== フッター ===== */
-.footer {
-    background-color: #007872;
-    color: #fff;
-    padding: 2rem 1rem;
+footer {
+    background-color: #0e7b78;
+    color: #ffffff;
+    padding: 2rem 0;
     text-align: center;
     border-radius: 0 0 10px 10px;
-    margin-top: 3rem;
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
+    line-height: 1.6;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
-.footer a {
-    color: #fff;
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.footer-link:hover {
+    opacity: 0.8;
     text-decoration: underline;
-    font-size: 0.9rem;
 }
 
-.footer p {
-    margin: 0.2rem 0;
-    font-size: 0.9rem;
-    line-height: 1.6;
+.footer-separator {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0.5rem;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-    .footer {
-        padding: 1.5rem 1rem;
+    footer {
+        padding: 1.5rem 0;
         border-radius: 0;
     }
     
-    .footer p {
-        font-size: 0.85rem;
+    .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .footer-link {
+        display: block;
+        padding: 0.3rem 0;
+    }
+    
+    .footer-separator {
+        display: none;
     }
 }
 
@@ -2486,7 +2481,7 @@ main {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    font-weight: bold;
+    font-weight: 500;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -2514,4 +2509,128 @@ main {
 .return-button,
 .return-button-hp {
     display: none;
+}
+
+/* ===== トップページに戻るボタン ===== */
+.return-button-wrapper {
+  text-align: center;
+  margin: 4rem 0 6rem; /* 上下の余白を調整 */
+  padding: 0 1rem;
+}
+
+.return-button {
+  display: inline-block;
+  background-color: #007872; /* フッターと同じ色 */
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.return-button:hover {
+  background-color: #005f5a; /* ホバー時の色 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .return-button-wrapper {
+    margin: 3rem 0 5rem;
+  }
+  
+  .return-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .return-button-wrapper {
+    margin: 2.5rem 0 4rem;
+  }
+  
+  .return-button {
+    width: 90%;
+    max-width: 280px;
+    padding: 0.8rem;
+  }
+}
+
+/* ===== フッター ===== */
+.footer {
+  background-color: #007872;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  margin-top: 3rem;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+}
+
+.footer p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Back to Top Button Styles */
+.back-to-top {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.btn-return {
+  background-color: #007872; /* フッターと同じ色 */
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Hiragino Sans", Meiryo, "MS PGothic", sans-serif;
+  cursor: pointer;
+}
+
+.btn-return:hover {
+  background-color: #005f5f; /* ホバー時の濃い色 */
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .back-to-top {
+    margin: 1.5rem 0;
+  }
+  
+  .btn-return {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }
