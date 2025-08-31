@@ -3,25 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HP/LP実績 - ポートフォリオ</title>
+    <title>HP/LP実績 - さつき Web Designer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="top-bar">
             <h1>さつき Web Designer</h1>
-            <nav class="header-nav">
+            
+            <!-- PC Navigation -->
+            <nav class="nav-pc">
                 <ul>
-                    <li><a href="index.html">ホーム</a></li>
-                    <li><a href="hp.html">HP/LP実績</a></li>
-                    <li><a href="web-design.html">Webデザイン実績</a></li>
-                    <li><a href="kindle.html">Kindle出版実績</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="index.html" class="nav-link">ホーム</a></li>
+                    <li><a href="hp.html" class="nav-link active">HP/LP実績</a></li>
+                    <li><a href="web-design.html" class="nav-link">Webデザイン実績</a></li>
+                    <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
+                    <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
                 </ul>
             </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Mobile Navigation -->
+            <div class="header-nav" id="mobile-menu">
+                <button class="close-btn" aria-label="メニューを閉じる">&times;</button>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">ホーム</a></li>
+                        <li><a href="hp.html" class="nav-link active">HP/LP実績</a></li>
+                        <li><a href="web-design.html" class="nav-link">Webデザイン実績</a></li>
+                        <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
+                        <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Overlay -->
+            <div class="overlay"></div>
         </div>
-        <img src="header9.jpg" alt="ヘッダー画像">
     </header>
+
+    <!-- Main Visual -->
+    <section class="main-visual">
+        <div class="main-visual-content">
+            <h2 class="main-visual-title">HP/LP制作実績</h2>
+            <p class="main-visual-text">お客様のビジネスを加速させる、効果的なホームページ・LP制作の実績</p>
+        </div>
+        <img src="header9.jpg" alt="HP/LP制作実績" class="main-visual-image">
+    </section>
+
     <main>
         <section id="hp">
             <h2>HP/LP実績</h2>
@@ -133,6 +168,12 @@
             <a href="index.html" class="return-button-hp">トップページに戻る</a>
         </section>
     </main>
+
+    <!-- Footer will be loaded here by load-components.js -->
+    <div id="footer-container"></div>
+
+    <!-- Load Components -->
+    <script src="js/load-components.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

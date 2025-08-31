@@ -10,18 +10,52 @@
     <header>
         <div class="top-bar">
             <h1>さつき Web Designer</h1>
-            <nav class="header-nav">
+            
+            <!-- PC Navigation -->
+            <nav class="nav-pc">
                 <ul>
-                    <li><a href="index.html">ホーム</a></li>
-                    <li><a href="hp.html">HP/LP実績</a></li>
-                    <li><a href="web-design.html">Webデザイン実績</a></li>
-                    <li><a href="kindle.html">Kindle出版実績</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="index.html" class="nav-link">ホーム</a></li>
+                    <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>
+                    <li><a href="web-design.html" class="nav-link active">Webデザイン実績</a></li>
+                    <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
+                    <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
                 </ul>
             </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Mobile Navigation -->
+            <div class="header-nav" id="mobile-menu">
+                <button class="close-btn" aria-label="メニューを閉じる">&times;</button>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">ホーム</a></li>
+                        <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>
+                        <li><a href="web-design.html" class="nav-link active">Webデザイン実績</a></li>
+                        <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
+                        <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Overlay -->
+            <div class="overlay"></div>
         </div>
-        <img src="header9.jpg" alt="ヘッダー画像">
     </header>
+
+    <!-- Main Visual -->
+    <section class="main-visual">
+        <div class="main-visual-content">
+            <h2 class="main-visual-title">Webデザイン実績</h2>
+            <p class="main-visual-text">ユーザー体験を重視した、魅力的で使いやすいWebデザインの実績</p>
+        </div>
+        <img src="header9.jpg" alt="Webデザイン実績" class="main-visual-image">
+    </section>
 
     <main>
         <!-- 制作の流れセクション -->
@@ -125,13 +159,11 @@
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-policy-center">
-            <a href="#" class="footer-link">特商表記&プライバシーポリシー</a>
-        </div>
-        <div class="footer-copy-center">
-            Copyright さつき Web designer All Rights Reserved.
-        </div>
-    </footer>
+    <!-- Footer will be loaded here by load-components.js -->
+    <div id="footer-container"></div>
+
+    <!-- Load Components -->
+    <script src="js/load-components.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

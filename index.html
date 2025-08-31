@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="index.html" class="nav-link">ホーム</a></li>
                     <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>
-                    <li><a href="web.html" class="nav-link">Webデザイン実績</a></li>
+                    <li><a href="web-design.html" class="nav-link">Webデザイン実績</a></li>
                     <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
                     <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
                 </ul>
@@ -36,7 +36,7 @@
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-link">ホーム</a></li>
                         <li><a href="hp.html" class="nav-link">HP/LP実績</a></li>
-                        <li><a href="web.html" class="nav-link">Webデザイン実績</a></li>
+                        <li><a href="web-design.html" class="nav-link">Webデザイン実績</a></li>
                         <li><a href="kindle.html" class="nav-link">Kindle出版実績</a></li>
                         <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
                     </ul>
@@ -71,7 +71,7 @@
                     <div class="card-content">
                         <h3>HP/LP実績</h3>
                         <p>お客様のビジネスを加速させる、効果的なホームページ・LP制作の実績をご紹介します。</p>
-                        <a href="hp.html" class="card-button">詳細を見る →</a>
+                        <a href="hp.html" class="skill-button">詳しく見る →</a>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                     <div class="card-content">
                         <h3>Webデザイン実績</h3>
                         <p>ユーザー体験を重視した、魅力的で使いやすいWebデザインの実績をご覧いただけます。</p>
-                        <a href="web-design.html" class="card-button">詳細を見る →</a>
+                        <a href="web-design.html" class="skill-button">詳しく見る →</a>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                     <div class="card-content">
                         <h3>Kindle出版実績</h3>
                         <p>Kindleでの電子書籍出版しました。企画からデザインまで、実績をご紹介します。</p>
-                        <a href="kindle.html" class="card-button">詳細を見る →</a>
+                        <a href="kindle.html" class="skill-button">詳しく見る →</a>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                     <div class="card-content">
                         <h3>お問い合わせ</h3>
                         <p>ご依頼やご相談はこちらからお気軽にお問い合わせください。</p>
-                        <a href="contact.html" class="card-button">お問い合わせ →</a>
+                        <a href="contact.html" class="skill-button">詳しく見る →</a>
                     </div>
                 </div>
             </div>
@@ -216,19 +216,11 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="legal.html" class="footer-link">特商表記&プライバシーポリシー</a>
-            </div>
-            <div class="copyright">
-                &copy; <span id="current-year"></span> さつき Web designer All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-    <script>
-        // 現在の年を自動的に更新
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+    <!-- Footer will be loaded here by load-components.js -->
+    <div id="footer-container"></div>
+
+    <!-- Load Components -->
+    <script src="js/load-components.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
