@@ -2462,3 +2462,31 @@ footer {
     background-color: #256728;
     text-decoration: none;
 }
+
+/* Responsive styles for buttons */
+@media (max-width: 768px) {
+    .skill-button, .detail-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        width: 100%;
+        margin: 10px 0;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    
+    .hp-col .detail-button {
+        margin: 15px 0;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    .skill-button, .detail-button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .hp-col .detail-button {
+        margin: 12px 0;
+    }
+}
