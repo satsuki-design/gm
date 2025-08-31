@@ -2442,3 +2442,23 @@ footer {
 .skill-button:hover {
     background-color: #0a5f5c;
 }
+
+/* Detail Button Styles */
+.detail-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0c7b77;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0 12px 0;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.detail-button:hover {
+    background-color: #256728;
+    text-decoration: none;
+}
